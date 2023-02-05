@@ -22,6 +22,18 @@ module.exports = {
           800: '#43b4fa',
           900: '#16ABF8',
         },
+        'waterlemonade': {
+          000: '#ffeeee',
+          100: '#ffdedd',
+          200: '#ffcdcc',
+          300: '#ffbcbc',
+          400: '#feabac',
+          500: '#fc9a9b',
+          600: '#f9888b',
+          700: '#f6767c',
+          800: '#f2626c',
+          900: '#ed4c5c',
+        },
         'black': '#111'
       },
       fontFamily: {
@@ -29,5 +41,7 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }
