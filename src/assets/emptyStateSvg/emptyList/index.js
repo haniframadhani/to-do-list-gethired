@@ -8,7 +8,7 @@ function EmptyStateList() {
       height='413'
       fill='none'
       viewBox='0 0 541 413'
-      className='mx-auto'
+      className='mx-auto max-w-full h-auto'
     >
       <g clipPath='url(#clip0_2_477)'>
         <path

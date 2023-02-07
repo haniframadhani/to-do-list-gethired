@@ -8,7 +8,7 @@ function EmptyStateActivity() {
       height='490'
       fill='none'
       viewBox='0 0 767 490'
-      className="mx-auto"
+      className="mx-auto max-w-full h-auto"
     >
       <g clipPath='url(#clip0_2_147)'>
         <path
