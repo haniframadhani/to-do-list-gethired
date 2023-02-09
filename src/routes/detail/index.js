@@ -1,8 +1,9 @@
-import { ChevronLeftIcon, PencilIcon } from "@heroicons/react/24/outline"
+import { ArrowsUpDownIcon, ChevronLeftIcon, PencilIcon } from "@heroicons/react/24/outline"
 import { Input } from "postcss"
 import { useState } from "react"
 import { Helmet } from "react-helmet"
 import Button from "../../component/button"
+import DropDown from "../../component/dropdown"
 import EmptyState from "../../component/emptyState"
 export default function Detail() {
   const [title, setTitle] = useState("judul")
@@ -27,7 +28,12 @@ export default function Detail() {
               <PencilIcon onClick={() => setIsFocus(!isFocus)} className="w-6 h-6 text-[#a4a4a4] hover:cursor-pointer" data-cy="todo-title-edit-button"></PencilIcon>
             </div>
           </div>
-          <Button dataCy="activity-add-button" purpose="add"></Button>
+          <div className="flex flex-row items-center gap-4">
+            <div className="border-2 rounded-full border-neutral-200 p-3.5 hover:cursor-pointer">
+              <ArrowsUpDownIcon className='w-6 h-6 text-[#888]'></ArrowsUpDownIcon>
+            </div>
+            <Button dataCy="activity-add-button" purpose="add"></Button>
+          </div>
         </div>
         <EmptyState dataCy="todo-empty-state"></EmptyState>
       </div>
