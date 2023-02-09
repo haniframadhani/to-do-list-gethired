@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet"
 import Button from "../../component/button"
 import DropDown from "../../component/dropdown"
 import EmptyState from "../../component/emptyState"
+import ListItem from "../../component/list-item"
 export default function Detail() {
   const [title, setTitle] = useState("judul")
   const [isFocus, setIsFocus] = useState(false)
@@ -12,6 +13,8 @@ export default function Detail() {
   const editTitle = e => {
     setTitle(e.target.value)
   }
+
+  let b = [1, 2, 3, 4, 5]
   return (
     <>
       <Helmet>
@@ -32,10 +35,14 @@ export default function Detail() {
             <div className="border-2 rounded-full border-neutral-200 p-3.5 hover:cursor-pointer">
               <ArrowsUpDownIcon className='w-6 h-6 text-[#888]'></ArrowsUpDownIcon>
             </div>
-            <Button dataCy="activity-add-button" purpose="add"></Button>
+            <Button dataCy="activity-add-button" purpose="tambah"></Button>
           </div>
         </div>
-        <EmptyState dataCy="todo-empty-state"></EmptyState>
+        {b.length > 0 ? <div className="flex flex-col gap-2.5 mt-12">
+          {b.map((bb, index) => {
+            return <ListItem key={index} activity={bb}></ListItem>
+          })}
+        </div> : <EmptyState dataCy="todo-empty-state"></EmptyState>}
       </div>
     </>
   )
