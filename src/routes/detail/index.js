@@ -9,9 +9,14 @@ import ListItem from "../../component/list-item"
 export default function Detail() {
   const [title, setTitle] = useState("judul")
   const [isFocus, setIsFocus] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const editTitle = e => {
     setTitle(e.target.value)
+  }
+
+  const openDropDown = () => {
+    setOpen(!open)
   }
 
   let b = [1, 2, 3, 4, 5]
@@ -26,16 +31,17 @@ export default function Detail() {
             <a href="/">
               <ChevronLeftIcon className="w-6 h-6" data-cy="todo-back-button"></ChevronLeftIcon>
             </a>
-            {!isFocus ? <h1 data-cy="activity-title" className="text-4xl font-bold w-60 md:w-full break-words">{title}</h1> : <input type="text" maxLength="20" name="title" id="title" value={title} onChange={editTitle} className="form-input bg-transparent border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-[#a4a4a4] font-bold text-4xl p-0 w-60 md:w-full" />}
+            {!isFocus ? <h1 data-cy="activity-title" className="text-4xl font-bold w-60 md:w-full break-words text-center md:text-left">{title}</h1> : <input type="text" maxLength="20" name="title" id="title" value={title} onChange={editTitle} className="form-input bg-transparent border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-[#a4a4a4] font-bold text-4xl p-0 w-60 md:w-full" />}
             <div>
               <PencilIcon onClick={() => setIsFocus(!isFocus)} className="w-6 h-6 text-[#a4a4a4] hover:cursor-pointer" data-cy="todo-title-edit-button"></PencilIcon>
             </div>
           </div>
           <div className="flex flex-row items-center gap-4">
-            <div className="border-2 rounded-full border-neutral-200 p-3.5 hover:cursor-pointer">
+            <div className="border-2 rounded-full border-neutral-200 p-3.5 hover:cursor-pointer z-10" onClick={openDropDown}>
               <ArrowsUpDownIcon className='w-6 h-6 text-[#888]'></ArrowsUpDownIcon>
             </div>
             <Button dataCy="activity-add-button" purpose="tambah"></Button>
+            <DropDown purpose="sort" open={open}></DropDown>
           </div>
         </div>
         {b.length > 0 ? <div className="flex flex-col gap-2.5 mt-12">

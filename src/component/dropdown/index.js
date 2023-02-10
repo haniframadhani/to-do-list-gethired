@@ -1,4 +1,6 @@
-export default function DropDown({ purpose }) {
+import { CheckIcon } from "@heroicons/react/24/outline";
+
+export default function DropDown({ purpose, open }) {
   const sort = [
     {
       text: "terbaru",
@@ -55,10 +57,16 @@ export default function DropDown({ purpose }) {
   ];
   let items = purpose === "sort" ? [...sort] : [...priority];
   return (
-    <div className="w-full text-base capitalize bg-white rounded-md shadow-md divide-y divide-neutral-200">
+    <div className={`z-0 min-w-max w-60 absolute text-base capitalize bg-white rounded-md shadow-md divide-y divide-neutral-200 transition-all duration-300 opacity-0 -top-40 ${open ? "opacity-100 !top-60 md:!top-52 lg:!top-48" : ""}`}>
       {items.map((item, index) => {
-        return <div key={index} data-cy={item.datacy} className="py-3.5 px-5 hover:bg-zinc-200 hover:cursor-pointer flex flex-row items-center gap-4"><div className={`w-4 h-4 ${purpose === "priority" ? `${item.color} rounded-full` : ""}`} dangerouslySetInnerHTML={{ __html: item.icon }}></div>{item.text}</div>
+        return <div key={index} data-cy={item.datacy} className="py-3.5 px-5 hover:bg-zinc-200 hover:cursor-pointer flex flex-row items-center gap-4">
+          <div className={`w-4 h-4 ${purpose === "priority" ? `${item.color} rounded-full` : ""}`} dangerouslySetInnerHTML={{ __html: item.icon }}></div>
+          <div className="flex-auto">{item.text}</div>
+          <div className={`w-6 h-6 text-black`}>
+            <CheckIcon></CheckIcon>
+          </div>
+        </div>
       })}
-    </div>
+    </div >
   )
 }

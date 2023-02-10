@@ -36,6 +36,6 @@ export default function Button({ purpose }) {
   }
   const btn = state(purpose)
   return (
-    <button data-cy={btn.datacy} className={`capitalize ${btn.color} ${btn.color === "bg-zinc-100" ? "text-[#4A4A4A]" : ""} text-white rounded-full text-lg py-3.5 px-7 font-semibold flex flex-row gap-1.5 justify-between items-center`}>{purpose === "tambah" ? <PlusIcon className='w-6 h-6'></PlusIcon> : ""}{btn.text}</button>
+    <button data-cy={btn.datacy} className={`capitalize z-10 ${btn.color} ${btn.color === "bg-zinc-100" ? "text-[#4A4A4A]" : ""} text-white rounded-full text-lg py-3.5 px-7 font-semibold flex flex-row gap-1.5 justify-between items-center`}>{purpose === "tambah" ? <PlusIcon className='w-6 h-6'></PlusIcon> : ""}{btn.text}</button>
   )
 }
