@@ -2,7 +2,7 @@ import { TrashIcon } from "@heroicons/react/24/outline";
 
 export default function Card({ title }) {
   return (
-    <a href="/detail">
+    <a href={`/${title}`}>
       <div data-cy="activity-card" className="aspect-square bg-white pt-5 pb-6 px-7 rounded-xl shadow-md hover:shadow-xl flex flex-col justify-between">
         <h2 className="font-bold text-lg">test {title}</h2>
         <div className="flex flex-row items-center justify-between">

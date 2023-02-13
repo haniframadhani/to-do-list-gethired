@@ -6,11 +6,13 @@ import Button from "../../component/button"
 import DropDown from "../../component/dropdown"
 import EmptyState from "../../component/emptyState"
 import ListItem from "../../component/list-item"
+import Modal from "../../component/modal"
 import ReactDOM from "react-dom/client";
 export default function Detail() {
   const [title, setTitle] = useState("judul")
   const [isFocus, setIsFocus] = useState(false)
   const [open, setOpen] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const dropdownIconRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -51,7 +53,7 @@ export default function Detail() {
             <div ref={dropdownIconRef} className="border-2 rounded-full border-neutral-200 p-3.5 hover:cursor-pointer z-10" onClick={openDropDown}>
               <ArrowsUpDownIcon className='w-6 h-6 text-[#888]'></ArrowsUpDownIcon>
             </div>
-            <Button dataCy="activity-add-button" purpose="tambah"></Button>
+            <Button purpose="tambah" setOpenModal={setOpenModal} openModal={openModal}></Button>
             <DropDown purpose="sort" open={open}></DropDown>
           </div>
         </div>
@@ -61,6 +63,7 @@ export default function Detail() {
           })}
         </div> : <EmptyState dataCy="todo-empty-state"></EmptyState>}
       </div>
+      <Modal open={openModal} setOpen={setOpenModal}></Modal>
     </>
   )
 }

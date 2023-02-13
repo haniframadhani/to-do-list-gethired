@@ -1,5 +1,4 @@
 import { CheckIcon } from "@heroicons/react/24/outline";
-import { forwardRef, useRef } from 'react';
 
 export default function DropDown({ purpose, open }) {
   const sort = [
@@ -56,9 +55,11 @@ export default function DropDown({ purpose, open }) {
       datacy: "modal-add-priority-very-low"
     }
   ];
+  let urut = "!z-10 !opacity-100 !top-60 md:!top-52 lg:!top-48"
+  let prioritas = "!opacity-100 !top-[25rem] lg:!top-96 !z-10"
   let items = purpose === "sort" ? [...sort] : [...priority];
   return (
-    <div className={`z-0 min-w-max w-60 absolute text-base capitalize bg-white rounded-md shadow-md divide-y divide-neutral-200 transition-all duration-300 opacity-0 -top-40 ${open ? "opacity-100 !top-60 md:!top-52 lg:!top-48" : ""}`}>
+    <div className={`-z-10 min-w-max w-60 absolute text-base !font-normal capitalize bg-white rounded-md shadow-md divide-y divide-neutral-200 transition-all opacity-0 duration-300 ${purpose === "sort" ? "top-28" : "top-[20rem]"} ${open ? purpose === "sort" ? urut : prioritas : ""}`}>
       {items.map((item, index) => {
         return <a key={index} data-cy={item.datacy} className="py-3.5 px-5 hover:bg-zinc-200 active:bg-zinc-500 hover:cursor-pointer flex flex-row items-center gap-4">
           <div className={`w-4 h-4 ${purpose === "priority" ? `${item.color} rounded-full` : ""}`} dangerouslySetInnerHTML={{ __html: item.icon }}></div>
