@@ -6,13 +6,16 @@ import Button from "../../component/button"
 import DropDown from "../../component/dropdown"
 import EmptyState from "../../component/emptyState"
 import ListItem from "../../component/list-item"
-import Modal from "../../component/modal"
+import Modal from "../../component/modalAddEdit"
 import ReactDOM from "react-dom/client";
+import ModalDelete from "../../component/modalDelete"
+import useOnClickOutside from "../../function/outsideClick"
 export default function Detail() {
   const [title, setTitle] = useState("judul")
   const [isFocus, setIsFocus] = useState(false)
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [openAlertDelete, setOpenAlertDelete] = useState(false)
   const dropdownIconRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -59,30 +62,12 @@ export default function Detail() {
         </div>
         {b.length > 0 ? <div className="flex flex-col gap-2.5 mt-12">
           {b.map((bb, index) => {
-            return <ListItem key={index} activity={bb}></ListItem>
+            return <ListItem key={index} setOpenModal={setOpenModal} activity={bb} setOpenAlertDelete={setOpenAlertDelete}></ListItem>
           })}
         </div> : <EmptyState dataCy="todo-empty-state"></EmptyState>}
       </div>
       <Modal open={openModal} setOpen={setOpenModal}></Modal>
+      <ModalDelete open={openAlertDelete} setOpen={setOpenAlertDelete}></ModalDelete>
     </>
   )
-}
-
-function useOnClickOutside(ref, handler) {
-  useEffect(
-    () => {
-      const listener = (event) => {
-        if (!ref.current || ref.current.contains(event.target)) {
-          return;
-        }
-        handler(event);
-      };
-      document.addEventListener("mousedown", listener);
-      document.addEventListener("touchstart", listener);
-      return () => {
-        document.removeEventListener("mousedown", listener);
-        document.removeEventListener("touchstart", listener);
-      };
-    }, [ref, handler]
-  );
 }

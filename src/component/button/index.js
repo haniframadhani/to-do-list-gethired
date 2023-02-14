@@ -1,5 +1,5 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
-export default function Button({ purpose, setOpenModal, openModal }) {
+export default function Button({ purpose, setOpenModal, openModal, allowSave }) {
   const tambah = {
     text: "tambah",
     color: "bg-out-of-blue-900",
@@ -12,7 +12,7 @@ export default function Button({ purpose, setOpenModal, openModal }) {
   }
   const batal = {
     text: "batal",
-    color: "bg-zinc-100",
+    color: "bg-zinc-100 !text-[#4A4A4A]",
     datacy: "modal-delete-cancel-button"
   }
   const simpan = {
@@ -36,6 +36,6 @@ export default function Button({ purpose, setOpenModal, openModal }) {
   }
   const btn = state(purpose)
   return (
-    <button onClick={openModal != null ? () => setOpenModal(!openModal) : null} data-cy={btn.datacy} className={`capitalize z-10 ${btn.color} ${btn.color === "bg-zinc-100" ? "text-[#4A4A4A]" : ""} text-white rounded-full text-lg py-3.5 px-7 font-semibold flex flex-row gap-1.5 justify-between items-center`}>{purpose === "tambah" ? <PlusIcon className='w-6 h-6'></PlusIcon> : ""}{btn.text}</button>
+    <button onClick={openModal != null ? () => setOpenModal(!openModal) : null} data-cy={btn.datacy} className={`capitalize z-10 ${btn.color} ${allowSave == null ? null : allowSave ? "" : "!bg-[#D0EEFE]"} text-white rounded-full text-lg py-3.5 px-7 font-semibold flex flex-row gap-1.5 justify-between items-center`} disabled={allowSave == null ? null : allowSave ? false : true}>{purpose === "tambah" ? <PlusIcon className='w-6 h-6'></PlusIcon> : ""}{btn.text}</button>
   )
 }
