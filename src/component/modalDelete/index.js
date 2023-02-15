@@ -6,7 +6,7 @@ export default function ModalDelete({ open, setOpen, setPeringatan }) {
   const modalRef = useRef(null);
   useOnClickOutside(modalRef, () => setOpen(false))
   return (
-    <div className={`fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center ${open ? "block" : "hidden"}`}>
+    <div className={`z-20 fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center ${open ? "block" : "hidden"}`}>
       <div ref={modalRef} className="bg-white rounded-xl p-10 grid grid-rows-3 justify-items-center items-center w-full md:w-fit md:max-w-[80%]">
         <div data-cy="modal-delete-icon" className="w-20 h-20">
           <ExclamationTriangleIcon className="w-20 h-20 text-[#ED4C5C]"></ExclamationTriangleIcon>
