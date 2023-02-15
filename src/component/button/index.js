@@ -1,5 +1,5 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
-export default function Button({ purpose, setOpenModal, openModal, allowSave }) {
+export default function Button({ purpose, setOpenModal, openModal, allowSave, setPemberitahuan }) {
   const tambah = {
     text: "tambah",
     color: "bg-out-of-blue-900",
@@ -35,7 +35,17 @@ export default function Button({ purpose, setOpenModal, openModal, allowSave }) 
     }
   }
   const btn = state(purpose)
+  let klik = null;
+  if (setOpenModal != null) {
+    klik = () => setOpenModal(!openModal)
+  }
+  if (setOpenModal != null && setPemberitahuan != null) {
+    klik = () => {
+      setOpenModal(!openModal);
+      setPemberitahuan(true);
+    }
+  }
   return (
-    <button onClick={openModal != null ? () => setOpenModal(!openModal) : null} data-cy={btn.datacy} className={`capitalize z-10 ${btn.color} ${allowSave == null ? null : allowSave ? "" : "!bg-[#D0EEFE]"} text-white rounded-full text-lg py-3.5 px-7 font-semibold flex flex-row gap-1.5 justify-between items-center`} disabled={allowSave == null ? null : allowSave ? false : true}>{purpose === "tambah" ? <PlusIcon className='w-6 h-6'></PlusIcon> : ""}{btn.text}</button>
+    <button onClick={klik} data-cy={btn.datacy} className={`capitalize z-10 ${btn.color} ${allowSave == null ? null : allowSave ? "" : "!bg-[#D0EEFE]"} text-white rounded-full text-lg py-3.5 px-7 font-semibold flex flex-row gap-1.5 justify-between items-center`} disabled={allowSave == null ? null : allowSave ? false : true}>{purpose === "tambah" ? <PlusIcon className='w-6 h-6'></PlusIcon> : ""}{btn.text}</button>
   )
 }

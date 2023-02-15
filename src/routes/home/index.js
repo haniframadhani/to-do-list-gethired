@@ -1,8 +1,13 @@
+import { useState } from "react"
 import { Helmet } from "react-helmet"
+import AlertSuccess from "../../component/alert"
 import Button from "../../component/button"
 import Card from "../../component/card"
 import EmptyState from "../../component/emptyState"
+import ModalDelete from "../../component/modalDelete"
 export default function Home() {
+  const [openAlertDelete, setOpenAlertDelete] = useState(false)
+  const [openAlert, setOpenALert] = useState(false)
   let a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
   return (
     <>
@@ -16,11 +21,13 @@ export default function Home() {
         </div>
         {a.length > 0 ? <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-6 mt-12">
           {a.map(aa => {
-            return <Card key={aa} title={aa}></Card>
+            return <Card key={aa} title={aa} setOpen={setOpenAlertDelete}></Card>
           })}
         </div> :
           <EmptyState dataCy={"activity-empty-state"}></EmptyState>}
       </div>
+      <ModalDelete open={openAlertDelete} setOpen={setOpenAlertDelete} setPeringatan={setOpenALert}></ModalDelete>
+      <AlertSuccess open={openAlert} setOpen={setOpenALert}></AlertSuccess>
     </>
   )
 }

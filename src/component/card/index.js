@@ -1,6 +1,6 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
 
-export default function Card({ title }) {
+export default function Card({ title, setOpen }) {
   return (
     <a href={`/${title}`}>
       <div data-cy="activity-card" className="aspect-square bg-white pt-5 pb-6 px-7 rounded-xl shadow-md hover:shadow-xl flex flex-col justify-between">
@@ -10,6 +10,7 @@ export default function Card({ title }) {
           <div className="hover:cursor-pointer" onClick={(e) => {
             e.stopPropagation()
             e.preventDefault()
+            setOpen(true)
           }}>
             <TrashIcon className='w-6 h-6'></TrashIcon>
           </div>
