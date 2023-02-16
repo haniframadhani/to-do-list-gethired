@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react"
 import Button from "../button"
 import DropDown from "../dropdown"
 import useOnClickOutside from "../../function/outsideClick"
+import useLockBodyScroll from "../../function/lockScroll"
 export default function Modal({ open, setOpen }) {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false)
   const [itemName, setItemName] = useState('');
@@ -28,6 +29,9 @@ export default function Modal({ open, setOpen }) {
 
   useOnClickOutside(priorityRef, () => setIsDropDownOpen(false))
   useOnClickOutside(modalRef, () => setOpen(false))
+
+  useLockBodyScroll()
+
   return (
     <div className={`z-10 fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center ${open ? "block" : "hidden"}`}>
       <div ref={modalRef} className="bg-white rounded-xl font-semibold divide-y divide-neutral-200 px-8 w-full md:w-4/6">

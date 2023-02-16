@@ -26,8 +26,8 @@ export default function Home() {
         </div> :
           <EmptyState dataCy={"activity-empty-state"}></EmptyState>}
       </div>
-      <ModalDelete open={openAlertDelete} setOpen={setOpenAlertDelete} setPeringatan={setOpenALert}></ModalDelete>
-      <AlertSuccess open={openAlert} setOpen={setOpenALert}></AlertSuccess>
+      {openAlertDelete && (<ModalDelete open={openAlertDelete} setOpen={setOpenAlertDelete} setPeringatan={setOpenALert}></ModalDelete>)}
+      {openAlert && (<AlertSuccess open={openAlert} setOpen={setOpenALert}></AlertSuccess>)}
     </>
   )
 }

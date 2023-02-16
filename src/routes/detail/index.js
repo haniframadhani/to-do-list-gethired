@@ -66,8 +66,8 @@ export default function Detail() {
           })}
         </div> : <EmptyState dataCy="todo-empty-state"></EmptyState>}
       </div>
-      <Modal open={openModal} setOpen={setOpenModal}></Modal>
-      <ModalDelete open={openAlertDelete} setOpen={setOpenAlertDelete}></ModalDelete>
+      {openModal && (<Modal open={openModal} setOpen={setOpenModal}></Modal>)}
+      {openAlertDelete && (<ModalDelete open={openAlertDelete} setOpen={setOpenAlertDelete}></ModalDelete>)}
     </>
   )
 }
