@@ -3,14 +3,17 @@ import { useEffect, useRef } from "react";
 import useLockBodyScroll from "../../function/lockScroll";
 import useOnClickOutside from "../../function/outsideClick";
 
-export default function AlertSuccess({ open, setOpen }) {
+export default function AlertSuccess({ open, setOpen, handleGetAllActivityList }) {
   const alertRef = useRef(null);
 
   useOnClickOutside(alertRef, () => setOpen(false))
   useLockBodyScroll()
 
   if (open) {
-    setTimeout(() => setOpen(false), 3000)
+    setTimeout(() => {
+      setOpen(false)
+      handleGetAllActivityList();
+    }, 3000)
   }
 
   return (

@@ -1,5 +1,6 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
-export default function Button({ purpose, setOpenModal, openModal, allowSave, setPemberitahuan }) {
+import { createNewActivity, deleteActivity } from '../../function/apiRequest'
+export default function Button({ purpose, setOpenModal, openModal, allowSave, setPemberitahuan, handleGetAllActivityList, deleteId }) {
   const tambah = {
     text: "tambah",
     color: "bg-out-of-blue-900",
@@ -35,16 +36,25 @@ export default function Button({ purpose, setOpenModal, openModal, allowSave, se
     }
   }
   const btn = state(purpose)
-  let klik = null;
-  if (setOpenModal != null) {
-    klik = () => setOpenModal(!openModal)
-  }
-  if (setOpenModal != null && setPemberitahuan != null) {
-    klik = () => {
+  let klik = async () => {
+    if (setOpenModal != null && setPemberitahuan != null) {
       setOpenModal(!openModal);
+      await deleteActivity(deleteId);
       setPemberitahuan(true);
     }
-  }
+    if (purpose === 'tambah' && handleGetAllActivityList != null) {
+      await createNewActivity({
+        title: 'new activity',
+        email: `${process.env.REACT_APP_EMAIL}`
+      })
+      handleGetAllActivityList();
+    }
+    if (setOpenModal != null) {
+      return setOpenModal(!openModal)
+    }
+    return null
+  };
+
   return (
     <button onClick={klik} data-cy={btn.datacy} className={`capitalize ${purpose === "tambah" ? "z-10" : "Z-0"} ${btn.color} ${allowSave == null ? null : allowSave ? "" : "!bg-[#D0EEFE]"} text-white rounded-full text-lg py-3.5 px-7 font-semibold flex flex-row gap-1.5 justify-between items-center`} disabled={allowSave == null ? null : allowSave ? false : true}>{purpose === "tambah" ? <PlusIcon className='w-6 h-6'></PlusIcon> : ""}{btn.text}</button>
   )

@@ -66,33 +66,6 @@ export default function DropDown({ purpose, open }) {
       isActive: false
     }
   ])
-  // const priority = [
-  //   {
-  //     text: "very high",
-  //     color: "bg-[#ED4C5C]",
-  //     datacy: "modal-add-priority-very-high"
-  //   },
-  //   {
-  //     text: "high",
-  //     color: "bg-[#F8A541]",
-  //     datacy: "modal-add-priority-high"
-  //   },
-  //   {
-  //     text: "medium",
-  //     color: "bg-[#00A790]",
-  //     datacy: "modal-add-priority-medium"
-  //   },
-  //   {
-  //     text: "low",
-  //     color: "bg-[#428BC1]",
-  //     datacy: "modal-add-priority-low"
-  //   },
-  //   {
-  //     text: "very low",
-  //     color: "bg-[#8942C1]",
-  //     datacy: "modal-add-priority-very-low"
-  //   }
-  // ];
   let urut = "!z-10 !opacity-100 !top-60 md:!top-52 lg:!top-48"
   let prioritas = "!opacity-100 !top-[25rem] lg:!top-96 !z-10"
   let items = purpose === "sort" ? [...sort] : [...priority];

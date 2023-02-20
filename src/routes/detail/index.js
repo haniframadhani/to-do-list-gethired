@@ -10,14 +10,21 @@ import Modal from "../../component/modalAddEdit"
 import ReactDOM from "react-dom/client";
 import ModalDelete from "../../component/modalDelete"
 import useOnClickOutside from "../../function/outsideClick"
+import { useParams } from "react-router-dom"
+import { getOneActivity, getAllTodoItems } from "../../function/apiRequest"
 export default function Detail() {
-  const [title, setTitle] = useState("judul")
+  const [title, setTitle] = useState("")
   const [isFocus, setIsFocus] = useState(false)
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [openAlertDelete, setOpenAlertDelete] = useState(false)
+  const [kegiatan, setKegiatan] = useState({});
+  const [todoItems, setTodoItems] = useState([])
   const dropdownIconRef = useRef(null);
   const inputRef = useRef(null);
+
+  const params = useParams();
+  const id = params.idActivity
 
   const editTitle = e => {
     setTitle(e.target.value)
@@ -30,7 +37,36 @@ export default function Detail() {
   useOnClickOutside(dropdownIconRef, () => setOpen(false))
   useOnClickOutside(inputRef, () => setIsFocus(false))
 
-  let b = [1, 2, 3, 4, 5]
+  const ambilSatu = async () => {
+    const res = await getOneActivity(id);
+    setKegiatan(res?.data)
+  }
+
+  const handleGetAllTodoItems = async () => {
+    const res = await getAllTodoItems(id);
+    setTodoItems(res?.data?.data)
+  }
+
+  useEffect(() => {
+    ambilSatu();
+    handleGetAllTodoItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id])
+
+  useEffect(() => {
+    setTitle(kegiatan?.title)
+    // setTodoItems(kegiatan?.todo_items)
+    console.log(kegiatan)
+    // console.log(todoItems)
+    // console.log(typeof (todoItems))
+    console.log(Array.isArray(todoItems))
+    if (Array.isArray(todoItems)) {
+      const result = todoItems.length;
+      console.log(result)
+    }
+  }, [kegiatan])
+
+  // let b = [1, 2, 3, 4, 5]
   return (
     <>
       <Helmet>
@@ -46,7 +82,7 @@ export default function Detail() {
               <h1 data-cy="activity-title" className="text-4xl font-bold w-60 md:w-full break-words text-center md:text-left">{title}</h1>
               :
               <form onSubmit={() => setIsFocus(false)}>
-                <input ref={inputRef} type="text" maxLength="20" name="title" id="title" value={title} onChange={editTitle} className="form-input bg-transparent border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-[#a4a4a4] font-bold text-4xl p-0 w-60 md:w-full" autoFocus="true" />
+                <input ref={inputRef} type="text" maxLength="20" name="title" id="title" value={title} onChange={editTitle} className="form-input bg-transparent border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-[#a4a4a4] font-bold text-4xl p-0 w-60 md:w-full" autoFocus={true} />
               </form>}
             <div>
               <PencilIcon onClick={() => setIsFocus(!isFocus)} className="w-6 h-6 text-[#a4a4a4] hover:cursor-pointer" data-cy="todo-title-edit-button"></PencilIcon>
@@ -60,9 +96,9 @@ export default function Detail() {
             <DropDown purpose="sort" open={open}></DropDown>
           </div>
         </div>
-        {b.length > 0 ? <div className="flex flex-col gap-2.5 mt-12">
-          {b.map((bb, index) => {
-            return <ListItem key={index} setOpenModal={setOpenModal} activity={bb} setOpenAlertDelete={setOpenAlertDelete}></ListItem>
+        {todoItems.length > 0 ? <div className="flex flex-col gap-2.5 mt-12">
+          {todoItems.map((todoItem, index) => {
+            return <ListItem key={todoItem.id} setOpenModal={setOpenModal} activity={todoItem.title} setOpenAlertDelete={setOpenAlertDelete} priority={todoItem.priority} is_active={todoItem.is_active}></ListItem>
           })}
         </div> : <EmptyState dataCy="todo-empty-state"></EmptyState>}
       </div>
