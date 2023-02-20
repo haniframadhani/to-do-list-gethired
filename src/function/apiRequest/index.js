@@ -30,3 +30,9 @@ export async function getAllTodoItems(id) {
     return error
   })
 }
+
+export async function createNewTodoList(data) {
+  return await axios.post(`${BASE_URL}/todo-items`, data).catch(error => {
+    return error
+  })
+}

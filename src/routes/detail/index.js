@@ -55,18 +55,8 @@ export default function Detail() {
 
   useEffect(() => {
     setTitle(kegiatan?.title)
-    // setTodoItems(kegiatan?.todo_items)
-    console.log(kegiatan)
-    // console.log(todoItems)
-    // console.log(typeof (todoItems))
-    console.log(Array.isArray(todoItems))
-    if (Array.isArray(todoItems)) {
-      const result = todoItems.length;
-      console.log(result)
-    }
   }, [kegiatan])
 
-  // let b = [1, 2, 3, 4, 5]
   return (
     <>
       <Helmet>
@@ -102,7 +92,7 @@ export default function Detail() {
           })}
         </div> : <EmptyState dataCy="todo-empty-state"></EmptyState>}
       </div>
-      {openModal && (<Modal open={openModal} setOpen={setOpenModal}></Modal>)}
+      {openModal && (<Modal open={openModal} setOpen={setOpenModal} handleGetAllTodoItems={handleGetAllTodoItems} id={id}></Modal>)}
       {openAlertDelete && (<ModalDelete open={openAlertDelete} setOpen={setOpenAlertDelete}></ModalDelete>)}
     </>
   )

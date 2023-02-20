@@ -1,6 +1,6 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
-import { createNewActivity, deleteActivity } from '../../function/apiRequest'
-export default function Button({ purpose, setOpenModal, openModal, allowSave, setPemberitahuan, handleGetAllActivityList, deleteId }) {
+import { createNewActivity, createNewTodoList, deleteActivity } from '../../function/apiRequest'
+export default function Button({ purpose, setOpenModal, openModal, allowSave, setPemberitahuan, handleGetAllActivityList, deleteId, handleGetAllTodoItems, createTodo }) {
   const tambah = {
     text: "tambah",
     color: "bg-out-of-blue-900",
@@ -48,6 +48,11 @@ export default function Button({ purpose, setOpenModal, openModal, allowSave, se
         email: `${process.env.REACT_APP_EMAIL}`
       })
       handleGetAllActivityList();
+    }
+    if (purpose === 'simpan' && handleGetAllTodoItems != null && createTodo != null) {
+      console.log(createTodo)
+      await createNewTodoList(createTodo)
+      handleGetAllTodoItems();
     }
     if (setOpenModal != null) {
       return setOpenModal(!openModal)

@@ -4,10 +4,16 @@ import Button from "../button"
 import DropDown from "../dropdown"
 import useOnClickOutside from "../../function/outsideClick"
 import useLockBodyScroll from "../../function/lockScroll"
-export default function Modal({ open, setOpen }) {
+export default function Modal({ open, setOpen, id, handleGetAllTodoItems }) {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false)
   const [itemName, setItemName] = useState('');
   const [allowSave, setAllowSafe] = useState(false);
+  const [createTodo, setCreateTodo] = useState({});
+  const [priority, setPriority] = useState({
+    title: "very high",
+    priority: "very-high",
+    color: "bg-[#ED4C5C]"
+  });
   const priorityRef = useRef(null);
   const modalRef = useRef(null);
 
@@ -26,6 +32,18 @@ export default function Modal({ open, setOpen }) {
       setAllowSafe(false)
     }
   }, [itemName])
+
+  useEffect(() => {
+    setCreateTodo({
+      "activity_group_id": id,
+      "title": itemName,
+      "priority": priority.priority
+    })
+  }, [itemName, priority])
+
+  useEffect(() => {
+    console.log(createTodo)
+  }, [createTodo])
 
   useOnClickOutside(priorityRef, () => setIsDropDownOpen(false))
   useOnClickOutside(modalRef, () => setOpen(false))
@@ -47,11 +65,11 @@ export default function Modal({ open, setOpen }) {
             <input data-cy="modal-add-name-input" type="text" name="" id="" placeholder="tambahkan nama list item" className="form-input rounded-md border-neutral-200 text-base placeholder:text-[#a4a4a4] placeholder:font-normal font-normal focus:ring-0" value={itemName} onChange={handleInput} />
           </div>
           <div className="flex flex-col gap-2.5">
-            <DropDown purpose="priority" open={isDropDownOpen}></DropDown>
+            <DropDown purpose="priority" open={isDropDownOpen} setPriorityCreate={setPriority}></DropDown>
             <h4 data-cy="modal-add-priority-title" className="text-xs leading-none uppercase">priority</h4>
             <div data-cy="modal-add-priority-dropdown" ref={priorityRef} className="py-3.5 px-4 border border-neutral-200 rounded-md flex flex-row items-center gap-5 cursor-pointer w-full md:w-60" onClick={openDropDown}>
-              <div className="bg-[#ED4C5C] w-3 h-3 rounded-full"></div>
-              <p className="text-base font-normal leading-none flex-1">very high</p>
+              <div className={`${priority.color} w-3 h-3 rounded-full`}></div>
+              <p className="text-base font-normal leading-none flex-1">{priority.title}</p>
               <div className="w-6 h-6 text-black">
                 <ChevronDownIcon className="w-6 h-6 text-black"></ChevronDownIcon>
               </div>
@@ -59,7 +77,7 @@ export default function Modal({ open, setOpen }) {
           </div>
         </div>
         <div className="py-5 flex flex-row-reverse">
-          <Button purpose="simpan" setOpenModal={setOpen} openModal={open} allowSave={allowSave}></Button>
+          <Button purpose="simpan" setOpenModal={setOpen} openModal={open} allowSave={allowSave} createTodo={createTodo} handleGetAllTodoItems={handleGetAllTodoItems}></Button>
         </div>
       </div>
     </div>

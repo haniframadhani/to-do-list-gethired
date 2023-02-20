@@ -9,14 +9,14 @@ export default function ListItem({ activity, setOpenModal, setOpenAlertDelete, p
   if (priority === 'high') {
     color = 'bg-[#F8A541]'
   }
-  if (priority === 'medium') {
+  if (priority === 'normal') {
     color = 'bg-[#00A790]'
   }
   if (priority === 'low') {
     color = 'bg-[#428BC1]'
   }
   if (priority === 'very-low') {
-    color = 'g-[#8942C1]'
+    color = 'bg-[#8942C1]'
   }
   if (is_active == 0) {
     setDone(true)
