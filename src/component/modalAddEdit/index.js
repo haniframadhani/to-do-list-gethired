@@ -41,10 +41,6 @@ export default function Modal({ open, setOpen, id, handleGetAllTodoItems }) {
     })
   }, [itemName, priority])
 
-  useEffect(() => {
-    console.log(createTodo)
-  }, [createTodo])
-
   useOnClickOutside(priorityRef, () => setIsDropDownOpen(false))
   useOnClickOutside(modalRef, () => setOpen(false))
 

@@ -55,7 +55,6 @@ export default function Button({ purpose, setOpenModal, openModal, allowSave, se
       handleGetAllActivityList();
     }
     if (purpose === 'simpan' && handleGetAllTodoItems != null && createTodo != null) {
-      console.log(createTodo)
       await createNewTodoList(createTodo)
       handleGetAllTodoItems();
     }
