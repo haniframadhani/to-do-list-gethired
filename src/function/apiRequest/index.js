@@ -36,3 +36,15 @@ export async function createNewTodoList(data) {
     return error
   })
 }
+
+export async function deleteTodoItem(id) {
+  return await axios.delete(`${BASE_URL}/todo-items/${id}`).catch(error => {
+    return error
+  })
+}
+
+export async function getOneTodoItem(id) {
+  return await axios.get(`${BASE_URL}/todo-items/${id}`).catch(error => {
+    return error
+  })
+}

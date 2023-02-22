@@ -1,6 +1,6 @@
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline"
 import { useState } from "react"
-export default function ListItem({ activity, setOpenModal, setOpenAlertDelete, priority, is_active }) {
+export default function ListItem({ activity, setOpenModal, setOpenAlertDelete, priority, is_active, id, setDeleteIdTodo }) {
   const [done, setDone] = useState(false);
   let color = ''
   if (priority === 'very-high') {
@@ -29,7 +29,10 @@ export default function ListItem({ activity, setOpenModal, setOpenAlertDelete, p
       <div className="flex-auto">
         <PencilIcon onClick={() => setOpenModal(true)} className="w-5 h-5 text-[#a4a4a4] hover:cursor-pointer" data-cy="todo-item-edit-button"></PencilIcon>
       </div>
-      <div onClick={() => setOpenAlertDelete(true)}>
+      <div onClick={() => {
+        setOpenAlertDelete(true)
+        setDeleteIdTodo(id)
+      }}>
         <TrashIcon className="w-5 h-5 text-[#a4a4a4] hover:cursor-pointer" data-cy="todo-item-delete-button"></TrashIcon>
       </div>
     </div>

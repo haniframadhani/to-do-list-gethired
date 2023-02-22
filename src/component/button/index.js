@@ -1,6 +1,6 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
-import { createNewActivity, createNewTodoList, deleteActivity } from '../../function/apiRequest'
-export default function Button({ purpose, setOpenModal, openModal, allowSave, setPemberitahuan, handleGetAllActivityList, deleteId, handleGetAllTodoItems, createTodo }) {
+import { createNewActivity, createNewTodoList, deleteActivity, deleteTodoItem } from '../../function/apiRequest'
+export default function Button({ purpose, setOpenModal, openModal, allowSave, setPemberitahuan, handleGetAllActivityList, deleteId, handleGetAllTodoItems, createTodo, deleteTodo }) {
   const tambah = {
     text: "tambah",
     color: "bg-out-of-blue-900",
@@ -37,10 +37,15 @@ export default function Button({ purpose, setOpenModal, openModal, allowSave, se
   }
   const btn = state(purpose)
   let klik = async () => {
-    if (setOpenModal != null && setPemberitahuan != null) {
+    if (purpose === 'hapus' && setOpenModal != null && setPemberitahuan != null && deleteTodo === false) {
       setOpenModal(!openModal);
       await deleteActivity(deleteId);
       setPemberitahuan(true);
+    }
+    if (purpose === 'hapus' && setOpenModal != null && deleteTodo === true) {
+      setOpenModal(!openModal);
+      await deleteTodoItem(deleteId);
+      handleGetAllTodoItems();
     }
     if (purpose === 'tambah' && handleGetAllActivityList != null) {
       await createNewActivity({

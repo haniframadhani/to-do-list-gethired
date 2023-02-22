@@ -20,6 +20,7 @@ export default function Detail() {
   const [openAlertDelete, setOpenAlertDelete] = useState(false)
   const [kegiatan, setKegiatan] = useState({});
   const [todoItems, setTodoItems] = useState([])
+  const [deleteIdTodo, setDeleteIdTodo] = useState()
   const dropdownIconRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -88,12 +89,12 @@ export default function Detail() {
         </div>
         {todoItems.length > 0 ? <div className="flex flex-col gap-2.5 mt-12">
           {todoItems.map((todoItem, index) => {
-            return <ListItem key={todoItem.id} setOpenModal={setOpenModal} activity={todoItem.title} setOpenAlertDelete={setOpenAlertDelete} priority={todoItem.priority} is_active={todoItem.is_active}></ListItem>
+            return <ListItem key={todoItem.id} setOpenModal={setOpenModal} activity={todoItem.title} setOpenAlertDelete={setOpenAlertDelete} priority={todoItem.priority} is_active={todoItem.is_active} id={todoItem.id} setDeleteIdTodo={setDeleteIdTodo}></ListItem>
           })}
         </div> : <EmptyState dataCy="todo-empty-state"></EmptyState>}
       </div>
       {openModal && (<Modal open={openModal} setOpen={setOpenModal} handleGetAllTodoItems={handleGetAllTodoItems} id={id}></Modal>)}
-      {openAlertDelete && (<ModalDelete open={openAlertDelete} setOpen={setOpenAlertDelete}></ModalDelete>)}
+      {openAlertDelete && (<ModalDelete open={openAlertDelete} setOpen={setOpenAlertDelete} idTodoDelete={deleteIdTodo} handleGetAllTodoItems={handleGetAllTodoItems}></ModalDelete>)}
     </>
   )
 }
