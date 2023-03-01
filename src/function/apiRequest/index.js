@@ -54,3 +54,9 @@ export async function changeActivityTitle(id, data) {
     return error
   })
 }
+
+export async function updateTodoItem(id, data) {
+  return await axios.patch(`${BASE_URL}/todo-items/${id}`, data).catch(error => {
+    return error
+  })
+}

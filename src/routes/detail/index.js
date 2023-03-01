@@ -62,11 +62,6 @@ export default function Detail() {
     changeActivityTitle(id, { "title": title })
     ambilSatu();
   }
-  // useEffect(() => {
-  //   if (!isFocus) {
-  //     () => handleUpdateTitle()
-  //   }
-  // }, [isFocus])
 
   return (
     <>
@@ -108,7 +103,7 @@ export default function Detail() {
         </div>
         {todoItems.length > 0 ? <div className="flex flex-col gap-2.5 mt-12">
           {todoItems.map((todoItem, index) => {
-            return <ListItem key={todoItem.id} setOpenModal={setOpenModal} activity={todoItem.title} setOpenAlertDelete={setOpenAlertDelete} priority={todoItem.priority} is_active={todoItem.is_active} id={todoItem.id} setDeleteIdTodo={setDeleteIdTodo}></ListItem>
+            return <ListItem key={todoItem.id} setOpenModal={setOpenModal} activity={todoItem.title} setOpenAlertDelete={setOpenAlertDelete} priority={todoItem.priority} is_active={todoItem.is_active} id={todoItem.id} setDeleteIdTodo={setDeleteIdTodo} handleGetAllTodoItems={handleGetAllTodoItems}></ListItem>
           })}
         </div> : <EmptyState dataCy="todo-empty-state"></EmptyState>}
       </div>
