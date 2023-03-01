@@ -18,7 +18,6 @@ export default function Home() {
   useEffect(() => {
     handleGetAllActivityList();
   }, [])
-  // console.log(activityList)
   return (
     <>
       <Helmet>

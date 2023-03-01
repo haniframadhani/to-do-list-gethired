@@ -48,3 +48,9 @@ export async function getOneTodoItem(id) {
     return error
   })
 }
+
+export async function changeActivityTitle(id, data) {
+  return await axios.patch(`${BASE_URL}/activity-groups/${id}`, data).catch(error => {
+    return error
+  })
+}
