@@ -11,7 +11,7 @@ import ReactDOM from "react-dom/client";
 import ModalDelete from "../../component/modalDelete"
 import useOnClickOutside from "../../function/outsideClick"
 import { useParams } from "react-router-dom"
-import { getOneActivity, getAllTodoItems } from "../../function/apiRequest"
+import { getOneActivity, getAllTodoItems, changeActivityTitle } from "../../function/apiRequest"
 export default function Detail() {
   const [title, setTitle] = useState("")
   const [isFocus, setIsFocus] = useState(false)
@@ -58,10 +58,20 @@ export default function Detail() {
     setTitle(kegiatan?.title)
   }, [kegiatan])
 
+  const handleUpdateTitle = () => {
+    changeActivityTitle(id, { "title": title })
+    ambilSatu();
+  }
+  // useEffect(() => {
+  //   if (!isFocus) {
+  //     () => handleUpdateTitle()
+  //   }
+  // }, [isFocus])
+
   return (
     <>
       <Helmet>
-        <title>Detail | To Do List</title>
+        <title>{`${title} | To Do List`}</title>
       </Helmet>
       <div className="px-8 sm:px-16 md:px-20 lg:px-30 2xl:px-56 my-11 text-black">
         <div className="flex flex-col gap-2 md:flex-row justify-between items-center max-w-screen-sm md:max-w-none">
@@ -72,8 +82,17 @@ export default function Detail() {
             {!isFocus ?
               <h1 data-cy="activity-title" className="text-4xl font-bold w-60 md:w-full break-words text-center md:text-left">{title}</h1>
               :
-              <form onSubmit={() => setIsFocus(false)}>
-                <input ref={inputRef} type="text" maxLength="20" name="title" id="title" value={title} onChange={editTitle} className="form-input bg-transparent border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-[#a4a4a4] font-bold text-4xl p-0 w-60 md:w-full" autoFocus={true} />
+              <form onSubmit={
+                () => {
+                  setIsFocus(false)
+                  handleUpdateTitle()
+                  ambilSatu();
+                }
+              }>
+                <input ref={inputRef} type="text" maxLength="20" name="title" id="title" value={title} onChange={editTitle} onBlur={() => {
+                  handleUpdateTitle()
+                  ambilSatu()
+                }} className="form-input bg-transparent border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-[#a4a4a4] font-bold text-4xl p-0 w-60 md:w-full" autoFocus={true} />
               </form>}
             <div>
               <PencilIcon onClick={() => setIsFocus(!isFocus)} className="w-6 h-6 text-[#a4a4a4] hover:cursor-pointer" data-cy="todo-title-edit-button"></PencilIcon>
