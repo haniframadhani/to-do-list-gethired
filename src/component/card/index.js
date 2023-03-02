@@ -10,7 +10,7 @@ export default function Card({ id, title, date, setOpen, setSelectedId }) {
         <h2 data-cy="activity-item-title" className="font-bold text-lg">{title}</h2>
         <div className="flex flex-row items-center justify-between">
           <p data-cy="activity-item-date" className="text-sm text-slate-500">{waktu}</p>
-          <div className="hover:cursor-pointer" onClick={(e) => {
+          <div data-cy="activity-item-delete-button" className="hover:cursor-pointer" onClick={(e) => {
             e.stopPropagation()
             e.preventDefault()
             setOpen(true)

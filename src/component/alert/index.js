@@ -17,7 +17,7 @@ export default function AlertSuccess({ open, setOpen, handleGetAllActivityList }
   }
 
   return (
-    <div className={`z-20 fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center ${open ? "block" : "hidden"}`}>
+    <div data-cy="modal-information" className={`z-20 fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center ${open ? "block" : "hidden"}`}>
       <div ref={alertRef} className="bg-white flex flex-row items-center gap-2.5 px-7 py-4 rounded-xl w-11/12 md:w-8/12 lg:w-5/12">
         <div data-cy="modal-information-icon" className="w-6 h-6 text-[#00A790]">
           <ExclamationCircleIcon className="w-6 h-6"></ExclamationCircleIcon>

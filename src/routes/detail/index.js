@@ -140,7 +140,7 @@ export default function Detail() {
               <ChevronLeftIcon className="w-6 h-6" data-cy="todo-back-button"></ChevronLeftIcon>
             </a>
             {!isFocus ?
-              <h1 data-cy="activity-title" className="text-4xl font-bold w-60 md:w-full break-words text-center md:text-left">{title}</h1>
+              <h1 data-cy="todo-title" className="text-4xl font-bold w-60 md:w-full break-words text-center md:text-left">{title}</h1>
               :
               <form onSubmit={
                 () => {
