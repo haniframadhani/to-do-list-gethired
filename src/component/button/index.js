@@ -2,22 +2,22 @@ import { PlusIcon } from '@heroicons/react/24/outline'
 import { createNewActivity, createNewTodoList, deleteActivity, deleteTodoItem } from '../../function/apiRequest'
 export default function Button({ purpose, setOpenModal, openModal, allowSave, setPemberitahuan, handleGetAllActivityList, deleteId, handleGetAllTodoItems, createTodo, deleteTodo }) {
   const tambah = {
-    text: "tambah",
+    text: "Tambah",
     color: "bg-out-of-blue-900",
     datacy: "activity-add-button"
   }
   const hapus = {
-    text: "hapus",
+    text: "Hapus",
     color: "bg-waterlemonade-900",
     datacy: "modal-delete-confirm-button"
   }
   const batal = {
-    text: "batal",
+    text: "Batal",
     color: "bg-zinc-100 !text-[#4A4A4A]",
     datacy: "modal-delete-cancel-button"
   }
   const simpan = {
-    text: "simpan",
+    text: "Simpan",
     color: "bg-out-of-blue-900",
     datacy: "modal-add-save-button"
   }
@@ -65,6 +65,6 @@ export default function Button({ purpose, setOpenModal, openModal, allowSave, se
   };
 
   return (
-    <button onClick={klik} data-cy={btn.datacy} className={`capitalize ${purpose === "tambah" ? "z-10" : "Z-0"} ${btn.color} ${allowSave == null ? null : allowSave ? "" : "!bg-[#D0EEFE]"} text-white rounded-full text-lg py-3.5 px-7 font-semibold flex flex-row gap-1.5 justify-between items-center ${purpose === 'tambah' ? 'tambah' : ''}`} disabled={allowSave == null ? null : allowSave ? false : true}>{purpose === "tambah" ? <PlusIcon className='w-6 h-6'></PlusIcon> : ""}{btn.text}</button>
+    <button onClick={klik} data-cy={btn.datacy} className={`capitalize ${purpose === "tambah" ? "z-10" : "Z-0"} ${btn.color} ${allowSave == null ? null : allowSave ? "" : "!bg-[#D0EEFE]"} text-white rounded-full text-lg py-3.5 px-7 font-semibold flex flex-row gap-1.5 justify-between items-center`} disabled={allowSave == null ? null : allowSave ? false : true}>{purpose === "tambah" ? <PlusIcon className='w-6 h-6'></PlusIcon> : ""}{btn.text}</button>
   )
 }
