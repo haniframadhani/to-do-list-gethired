@@ -21,6 +21,7 @@ export default function Detail() {
   const [kegiatan, setKegiatan] = useState({});
   const [todoItems, setTodoItems] = useState([])
   const [deleteIdTodo, setDeleteIdTodo] = useState()
+  const [sorting, setSorting] = useState(0)
   const dropdownIconRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -63,6 +64,70 @@ export default function Detail() {
     ambilSatu();
   }
 
+  function sortTerbaru() {
+    todoItems.sort((a, b) => {
+      return b.id - a.id;
+    })
+  }
+
+  function sortTerlama() {
+    todoItems.sort((a, b) => {
+      return a.id - b.id;
+    })
+  }
+
+  function sortAZ() {
+    todoItems.sort((a, b) => {
+      let fa = a.title.toLowerCase(), fb = b.title.toLowerCase();
+      if (fa < fb) {
+        return -1;
+      }
+      if (fa > fb) {
+        return 1
+      }
+      return 0;
+    })
+  }
+
+  function sortZA() {
+    todoItems.sort((a, b) => {
+      let fa = a.title.toLowerCase(), fb = b.title.toLowerCase();
+      if (fa < fb) {
+        return 1;
+      }
+      if (fa > fb) {
+        return -1
+      }
+      return 0;
+    })
+  }
+
+  function sortBelumSelesai() {
+    todoItems.sort((a, b) => {
+      return b.is_active - a.is_active;
+    })
+  }
+
+  useEffect(() => {
+    switch (sorting) {
+      case 0:
+        sortTerbaru();
+        break;
+      case 1:
+        sortTerlama();
+        break;
+      case 2:
+        sortAZ();
+        break;
+      case 3:
+        sortZA();
+        break;
+      case 4:
+        sortBelumSelesai()
+        break;
+    }
+  }, [sorting])
+
   return (
     <>
       <Helmet>
@@ -98,7 +163,7 @@ export default function Detail() {
               <ArrowsUpDownIcon className='w-6 h-6 text-[#888]'></ArrowsUpDownIcon>
             </div>
             <Button purpose="tambah" setOpenModal={setOpenModal} openModal={openModal}></Button>
-            <DropDown purpose="sort" open={open}></DropDown>
+            <DropDown purpose="sort" open={open} setSorting={setSorting}></DropDown>
           </div>
         </div>
         {todoItems.length > 0 ? <div className="flex flex-col gap-2.5 mt-12">

@@ -1,7 +1,7 @@
 import { CheckIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
-export default function DropDown({ purpose, open, setPriorityCreate }) {
+export default function DropDown({ purpose, open, setPriorityCreate, setSorting }) {
   const [sort, setSort] = useState([
     {
       text: "terbaru",
@@ -73,6 +73,8 @@ export default function DropDown({ purpose, open, setPriorityCreate }) {
   const handleSelect = index => {
     if (purpose === 'sort') {
       setSort(prevItems => prevItems.map((e, i) => ({ ...e, isActive: i === index })))
+      setSorting(index)
+      console.log(`index : ${index}`)
     } else {
       setPriority(prevItems => prevItems.map((e, i) => ({ ...e, isActive: i === index })))
       switch (index) {
