@@ -74,7 +74,6 @@ export default function DropDown({ purpose, open, setPriorityCreate, setSorting 
     if (purpose === 'sort') {
       setSort(prevItems => prevItems.map((e, i) => ({ ...e, isActive: i === index })))
       setSorting(index)
-      console.log(`index : ${index}`)
     } else {
       setPriority(prevItems => prevItems.map((e, i) => ({ ...e, isActive: i === index })))
       switch (index) {
