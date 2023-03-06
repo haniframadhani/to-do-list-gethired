@@ -12,6 +12,7 @@ import ModalDelete from "../../component/modalDelete"
 import useOnClickOutside from "../../function/outsideClick"
 import { useParams } from "react-router-dom"
 import { getOneActivity, getAllTodoItems, changeActivityTitle } from "../../function/apiRequest"
+import AlertSuccess from "../../component/alert"
 export default function Detail() {
   const [title, setTitle] = useState("")
   const [isFocus, setIsFocus] = useState(false)
@@ -22,6 +23,7 @@ export default function Detail() {
   const [todoItems, setTodoItems] = useState([])
   const [deleteIdTodo, setDeleteIdTodo] = useState()
   const [sorting, setSorting] = useState(0)
+  const [openAlert, setOpenALert] = useState(false);
   const dropdownIconRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -173,7 +175,8 @@ export default function Detail() {
         </div> : <EmptyState dataCy="todo-empty-state"></EmptyState>}
       </div>
       {openModal && (<Modal open={openModal} setOpen={setOpenModal} handleGetAllTodoItems={handleGetAllTodoItems} id={id}></Modal>)}
-      {openAlertDelete && (<ModalDelete open={openAlertDelete} setOpen={setOpenAlertDelete} idTodoDelete={deleteIdTodo} handleGetAllTodoItems={handleGetAllTodoItems}></ModalDelete>)}
+      {openAlertDelete && (<ModalDelete open={openAlertDelete} setOpen={setOpenAlertDelete} idTodoDelete={deleteIdTodo} handleGetAllTodoItems={handleGetAllTodoItems} setPeringatan={setOpenALert} ></ModalDelete>)}
+      {openAlert && (<AlertSuccess open={openAlert} setOpen={setOpenALert} handleGetAllTodoItems={handleGetAllTodoItems}></AlertSuccess>)}
     </>
   )
 }

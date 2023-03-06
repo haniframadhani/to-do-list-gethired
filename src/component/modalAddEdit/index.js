@@ -48,7 +48,7 @@ export default function Modal({ open, setOpen, id, handleGetAllTodoItems }) {
 
   return (
     <div className={`z-10 fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center ${open ? "block" : "hidden"}`}>
-      <div ref={modalRef} className="bg-white rounded-xl font-semibold divide-y divide-neutral-200 px-8 w-full md:w-4/6">
+      <div ref={modalRef} data-cy="modal-add" className="bg-white rounded-xl font-semibold divide-y divide-neutral-200 px-8 w-full md:w-4/6">
         <div className="flex flex-row py-6 items-center justify-between">
           <h3 data-cy="modal-add-title" className="text-lg leading-none capitalize">tambah list item</h3>
           <div data-cy="modal-add-close-button" className="w-6 h-6 cursor-pointer" onClick={() => setOpen(false)}>

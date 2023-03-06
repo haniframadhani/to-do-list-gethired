@@ -53,7 +53,8 @@ export default function Button({ purpose, setOpenModal, openModal, allowSave, se
     if (purpose === 'hapus' && setOpenModal != null && deleteTodo === true) {
       setOpenModal(!openModal);
       await deleteTodoItem(deleteId);
-      handleGetAllTodoItems();
+      setPemberitahuan(true);
+      // handleGetAllTodoItems();
     }
     if (purpose === 'tambah' && handleGetAllActivityList != null) {
       await createNewActivity({

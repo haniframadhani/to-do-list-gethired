@@ -34,7 +34,7 @@ export default function ListItem({ activity, setOpenModal, setOpenAlertDelete, p
   }, [is_active])
   return (
     <div className="w-full bg-white rounded-xl px-7 py-8 font-medium shadow-sm flex flex-row items-center gap-4">
-      <input type="checkbox" className="form-checkbox border-[#C7C7C7] bg-white text-[#16ABF8] focus:ring-0" defaultChecked={is_active ? false : true} onClick={() => {
+      <input type="checkbox" data-cy="todo-item-checkbox" className="form-checkbox border-[#C7C7C7] bg-white text-[#16ABF8] focus:ring-0" defaultChecked={is_active ? false : true} onClick={() => {
         setDone(!done)
         setData({ "is_active": done })
         handleGetAllTodoItems();
