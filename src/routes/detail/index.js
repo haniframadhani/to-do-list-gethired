@@ -159,7 +159,7 @@ export default function Detail() {
             </div>
           </div>
           <div className="flex flex-row items-center gap-4">
-            <div ref={dropdownIconRef} className="border-2 rounded-full border-neutral-200 p-3.5 hover:cursor-pointer z-10" onClick={openDropDown}>
+            <div ref={dropdownIconRef} data-cy="todo-sort-button" className="border-2 rounded-full border-neutral-200 p-3.5 hover:cursor-pointer z-10" onClick={openDropDown}>
               <ArrowsUpDownIcon className='w-6 h-6 text-[#888]'></ArrowsUpDownIcon>
             </div>
             <Button purpose="tambah-todo" setOpenModal={setOpenModal} openModal={openModal}></Button>
