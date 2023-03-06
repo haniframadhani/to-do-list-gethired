@@ -67,19 +67,19 @@ export default function Detail() {
   }
 
   function sortTerbaru() {
-    todoItems.sort((a, b) => {
+    setTodoItems([...todoItems].sort((a, b) => {
       return b.id - a.id;
-    })
+    }))
   }
 
   function sortTerlama() {
-    todoItems.sort((a, b) => {
+    setTodoItems([...todoItems].sort((a, b) => {
       return a.id - b.id;
-    })
+    }))
   }
 
   function sortAZ() {
-    todoItems.sort((a, b) => {
+    setTodoItems([...todoItems].sort((a, b) => {
       let fa = a.title.toLowerCase(), fb = b.title.toLowerCase();
       if (fa < fb) {
         return -1;
@@ -88,11 +88,11 @@ export default function Detail() {
         return 1
       }
       return 0;
-    })
+    }))
   }
 
   function sortZA() {
-    todoItems.sort((a, b) => {
+    setTodoItems([...todoItems].sort((a, b) => {
       let fa = a.title.toLowerCase(), fb = b.title.toLowerCase();
       if (fa < fb) {
         return 1;
@@ -101,13 +101,13 @@ export default function Detail() {
         return -1
       }
       return 0;
-    })
+    }))
   }
 
   function sortBelumSelesai() {
-    todoItems.sort((a, b) => {
+    setTodoItems([...todoItems].sort((a, b) => {
       return b.is_active - a.is_active;
-    })
+    }))
   }
 
   useEffect(() => {
