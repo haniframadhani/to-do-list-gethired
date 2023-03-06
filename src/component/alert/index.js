@@ -6,7 +6,10 @@ import useOnClickOutside from "../../function/outsideClick";
 export default function AlertSuccess({ open, setOpen, handleGetAllActivityList }) {
   const alertRef = useRef(null);
 
-  useOnClickOutside(alertRef, () => setOpen(false))
+  useOnClickOutside(alertRef, () => {
+    setOpen(false)
+    handleGetAllActivityList();
+  })
   useLockBodyScroll()
 
   if (open) {

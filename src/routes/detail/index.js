@@ -162,7 +162,7 @@ export default function Detail() {
             <div ref={dropdownIconRef} className="border-2 rounded-full border-neutral-200 p-3.5 hover:cursor-pointer z-10" onClick={openDropDown}>
               <ArrowsUpDownIcon className='w-6 h-6 text-[#888]'></ArrowsUpDownIcon>
             </div>
-            <Button purpose="tambah" setOpenModal={setOpenModal} openModal={openModal}></Button>
+            <Button purpose="tambah-todo" setOpenModal={setOpenModal} openModal={openModal}></Button>
             <DropDown purpose="sort" open={open} setSorting={setSorting}></DropDown>
           </div>
         </div>

@@ -6,6 +6,11 @@ export default function Button({ purpose, setOpenModal, openModal, allowSave, se
     color: "bg-out-of-blue-900",
     datacy: "activity-add-button"
   }
+  const tambahTodo = {
+    text: "Tambah",
+    color: "bg-out-of-blue-900",
+    datacy: "todo-add-button"
+  }
   const hapus = {
     text: "Hapus",
     color: "bg-waterlemonade-900",
@@ -33,6 +38,9 @@ export default function Button({ purpose, setOpenModal, openModal, allowSave, se
     }
     if (tujuan === "batal") {
       return batal;
+    }
+    if (tujuan === "tambah-todo") {
+      return tambahTodo
     }
   }
   const btn = state(purpose)
@@ -65,6 +73,6 @@ export default function Button({ purpose, setOpenModal, openModal, allowSave, se
   };
 
   return (
-    <button onClick={klik} data-cy={btn.datacy} className={`capitalize ${purpose === "tambah" ? "z-10" : "Z-0"} ${btn.color} ${allowSave == null ? null : allowSave ? "" : "!bg-[#D0EEFE]"} text-white rounded-full text-lg py-3.5 px-7 font-semibold flex flex-row gap-1.5 justify-between items-center`} disabled={allowSave == null ? null : allowSave ? false : true}>{purpose === "tambah" ? <PlusIcon className='w-6 h-6'></PlusIcon> : ""}{btn.text}</button>
+    <button onClick={klik} data-cy={btn.datacy} className={`capitalize ${purpose === "tambah" ? "z-10" : "Z-0"} ${btn.color} ${allowSave == null ? null : allowSave ? "" : "!bg-[#D0EEFE]"} text-white rounded-full text-lg py-3.5 px-7 font-semibold flex flex-row gap-1.5 justify-between items-center`} disabled={allowSave == null ? null : allowSave ? false : true}>{purpose === "tambah" || purpose === "tambah-todo" ? <PlusIcon className='w-6 h-6'></PlusIcon> : ""}{btn.text}</button>
   )
 }
